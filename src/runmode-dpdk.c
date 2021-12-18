@@ -854,7 +854,7 @@ static void DeviceInitPortConf(const DPDKIfaceConfig *iconf,
     *port_conf = (struct rte_eth_conf){
             .rxmode = {
                     .mq_mode = ETH_MQ_RX_NONE,
-                    .max_rx_pkt_len = iconf->mtu,
+                    .mtu = iconf->mtu,
                     .offloads = 0, // turn every offload off to prevent any packet modification
             },
             .txmode = {
@@ -912,9 +912,9 @@ static void DeviceInitPortConf(const DPDKIfaceConfig *iconf,
         }
     }
 
-    if (iconf->mtu > RTE_ETHER_MAX_LEN) {
+    /*    if (iconf->mtu > RTE_ETHER_MAX_LEN) {
         port_conf->rxmode.offloads |= DEV_RX_OFFLOAD_JUMBO_FRAME;
-    }
+    }*/
 
     if (dev_info->tx_offload_capa & DEV_TX_OFFLOAD_MBUF_FAST_FREE) {
         port_conf->txmode.offloads |= DEV_TX_OFFLOAD_MBUF_FAST_FREE;
@@ -1129,14 +1129,14 @@ static int DeviceConfigure(DPDKIfaceConfig *iconf)
     }
 
     // check if jumbo frames are set and are available
-    if (iconf->mtu > RTE_ETHER_MAX_LEN &&
+    /*if (iconf->mtu > RTE_ETHER_MAX_LEN &&
             !(dev_info.rx_offload_capa & DEV_RX_OFFLOAD_JUMBO_FRAME)) {
         SCLogError(SC_ERR_DPDK_CONF,
                 "Jumbo frames not supported, "
                 "set MTU of \"%s\" to 1500B",
                 iconf->iface);
         SCReturnInt(-EINVAL);
-    }
+    }*/
 
     DeviceInitPortConf(iconf, &dev_info, &port_conf);
     if (port_conf.rxmode.offloads & DEV_RX_OFFLOAD_CHECKSUM) {
