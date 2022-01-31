@@ -388,12 +388,14 @@ static TmEcode ReceiveDPDKLoop(ThreadVars *tv, void *data, void *slot)
         }
 
         /* Trigger one dump of stats every second */
+	/*
         current_time = DPDKGetSeconds();
         if (current_time != last_dump) {
             DPDKDumpCounters(ptv);
             last_dump = current_time;
         }
         StatsSyncCountersIfSignalled(tv);
+	*/
     }
 
     SCReturnInt(TM_ECODE_OK);
