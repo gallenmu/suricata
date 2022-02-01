@@ -69,7 +69,7 @@
  * Default timeout (in seconds) before a defragmentation tracker will
  * be released.
  */
-#define TIMEOUT_DEFAULT 60
+#define TIMEOUT_DEFAULT 600
 
 /**
  * Maximum allowed timeout, 24 hours.
@@ -79,7 +79,7 @@
 /**
  * Minimum allowed timeout, 1 second.
  */
-#define TIMEOUT_MIN 1
+#define TIMEOUT_MIN 60
 
 /** Fragment reassembly policies. */
 enum defrag_policies {
