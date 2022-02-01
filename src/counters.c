@@ -44,10 +44,10 @@
 #include "output-json-stats.h"
 
 /* Time interval for syncing the local counters with the global ones */
-#define STATS_WUT_TTS 3
+#define STATS_WUT_TTS 300
 
 /* Time interval at which the mgmt thread o/p the stats */
-#define STATS_MGMTT_TTS 8
+#define STATS_MGMTT_TTS 300 
 
 /**
  * \brief Different kinds of qualifier that can be used to modify the behaviour
